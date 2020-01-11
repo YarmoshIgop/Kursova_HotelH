@@ -16,17 +16,26 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    addnewrow.cpp \
+    deleterow.cpp \
     main.cpp \
     mainwindow.cpp \
-    secondwindow.cpp
+    secondwindow.cpp \
+    viewalldata.cpp
 
 HEADERS += \
+    addnewrow.h \
+    deleterow.h \
     mainwindow.h \
-    secondwindow.h
+    secondwindow.h \
+    viewalldata.h
 
 FORMS += \
+    addnewrow.ui \
+    deleterow.ui \
     mainwindow.ui \
-    secondwindow.ui
+    secondwindow.ui \
+    viewalldata.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

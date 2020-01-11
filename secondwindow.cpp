@@ -1,5 +1,8 @@
 #include "secondwindow.h"
 #include "ui_secondwindow.h"
+#include "addnewrow.h"
+#include "deleterow.h"
+#include "viewalldata.h"
 
 secondwindow::secondwindow(QWidget *parent) :
     QDialog(parent),
@@ -8,6 +11,13 @@ secondwindow::secondwindow(QWidget *parent) :
     ui->setupUi(this);
 
     list=new QStringList;
+
+    ui->lineEdit_2->hide();
+    ui->lineEdit_3->hide();
+    ui->lineEdit_4->hide();
+    ui->add_label->hide();
+    ui->delete_label->hide();
+    ui->view_label->hide();
 
     /*
     dataBase = QSqlDatabase::addDatabase("QSQLITE");
@@ -121,4 +131,71 @@ void secondwindow::on_lineEdit_textChanged(const QString &arg1)
     QRegExp regExp(arg1,Qt::CaseInsensitive,QRegExp::Wildcard);
     ui->listWidget->clear();
     ui->listWidget->addItems(list->filter(regExp));
+}
+
+
+
+void secondwindow::on_pushButton_2_clicked()
+{
+    ui->view_label->show();
+    ui->lineEdit_3->show();
+
+    QString tableName = ui->lineEdit_3->text();
+    if (tableName != "") {
+        qDebug() << tableName;
+
+        addnewrow add;
+        add.setModal(true);
+        add.getTableName(tableName);
+        add.exec();
+        ui->view_label->hide();
+        ui->lineEdit_3->hide();
+
+    } else  if (tableName != "users" || tableName != "Rooms" || tableName != "" ) {
+              ui->view_label->setText("такої таблиці не існує");
+        }
+
+
+}
+
+void secondwindow::on_delet_btn_clicked()
+{
+    ui->delete_label->show();
+    ui->lineEdit_2->show();
+
+    QString tableName = ui->lineEdit_2->text();
+    if (tableName != "") {
+        qDebug() << tableName;
+
+        deleterow add;
+        add.setModal(true);
+        add.getTableName(tableName);
+        add.exec();
+        ui->delete_label->hide();
+        ui->lineEdit_2->hide();
+    } else  if (tableName != "users" || tableName != "Rooms" || tableName != "" ) {
+              ui->delete_label->setText("такої таблиці не існує");
+        }
+
+}
+
+void secondwindow::on_view_btn_clicked()
+{
+    ui->add_label->show();
+    ui->lineEdit_4->show();
+
+    QString tableName = ui->lineEdit_4->text();
+    if (tableName != "") {
+        qDebug() << tableName;
+
+        viewalldata add;
+        add.setModal(true);
+        add.getTableName(tableName);
+        add.exec();
+        ui->add_label->hide();
+        ui->lineEdit_4->hide();
+    } else  if (tableName != "users" || tableName != "Rooms" || tableName != "" ) {
+              ui->delete_label->setText("такої таблиці не існує");
+        }
+
 }

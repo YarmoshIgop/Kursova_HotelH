@@ -33,6 +33,13 @@ private slots:
 
     void on_lineEdit_textChanged(const QString &arg1);
 
+
+    void on_pushButton_2_clicked();
+
+    void on_delet_btn_clicked();
+
+    void on_view_btn_clicked();
+
 private:
     Ui::secondwindow *ui;
 
@@ -43,6 +50,7 @@ private:
     void addValues(int index);
 
     void refleshLits();
+
 };
 
 #endif // SECONDWINDOW_H
